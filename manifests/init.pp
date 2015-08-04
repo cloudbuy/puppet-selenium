@@ -25,8 +25,6 @@ class selenium(
   validate_string($download_timeout)
   validate_bool($nocheckcertificate)
 
-  include wget
-
   if $manage_user {
     user { $user:
       gid => $group,
@@ -83,6 +81,8 @@ class selenium(
     source  => $jar_url,
     path    => "${jar_path}/${jar_name}",
     extract => false,
+    user    => $user,
+    group   => $group,
     require => File[$jar_path],
   }
 

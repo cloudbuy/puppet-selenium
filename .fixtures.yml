@@ -3,9 +3,9 @@ fixtures:
     stdlib:
       repo: 'https://github.com/puppetlabs/puppetlabs-stdlib.git'
       ref:  '4.6.0'
-    wget:
-      repo: 'https://github.com/maestrodev/puppet-wget.git'
-      ref: 'v1.2.2'
+    archive:
+      repo: 'https://github.com/nanliu/puppet-archive.git'
+      ref: '0.3.0'
     logrotate:
       repo: 'https://github.com/rodjek/puppet-logrotate.git'
       # The current forge release (1.1.1) of logrotate is not compatible with
