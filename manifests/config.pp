@@ -30,19 +30,21 @@ define selenium::config(
   # prog is the 'name' of the init.d script.
   $prog = "selenium${name}"
 
-  file { 'init-script':
-    ensure  => 'file',
-    path    => "/etc/init.d/${prog}",
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0755',
-    content => template("${module_name}/init.d/${selenium::params::service_template}"),
-  } ~>
-  service { $prog:
-    ensure     => running,
-    hasstatus  => true,
-    hasrestart => true,
-    enable     => true,
+  if ($::osfamily != 'Windows') {
+    file { 'init-script':
+      ensure  => 'file',
+      path    => "/etc/init.d/${prog}",
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755',
+      content => template("${module_name}/init.d/${selenium::params::service_template}"),
+    } ~>
+    service { $prog:
+      ensure     => running,
+      hasstatus  => true,
+      hasrestart => true,
+      enable     => true,
+    }
   }
 
 }
