@@ -79,12 +79,11 @@ class selenium(
     }
   }
 
-  wget::fetch { 'selenium-server-standalone':
-    source             => $jar_url,
-    destination        => "${jar_path}/${jar_name}",
-    timeout            => $download_timeout,
-    nocheckcertificate => $nocheckcertificate,
-    require            => File[$jar_path],
+  archive { 'selenium-server-standalone':
+    source  => $jar_url,
+    path    => "${jar_path}/${jar_name}",
+    extract => false,
+    require => File[$jar_path],
   }
 
   if $::osfamily != 'windows' {
